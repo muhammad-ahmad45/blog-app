@@ -1,8 +1,9 @@
 
 class ArticlesController < ApplicationController
 
-  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+  around_action :wrap_action_with_custom_code, only: [:show, :edit]
 
+  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
 
   def index
     @articles = Article.all
@@ -50,5 +51,16 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :body, :status)
   end
+
+  private
+  def wrap_action_with_custom_code
+    # Code to run before the action
+    puts "Before action code"
+
+    yield  # This yields to the actual action
+
+    # Code to run after the action
+    puts "After action code"
+  end
+
 end
-  
