@@ -2,10 +2,10 @@ Rails.application.routes.draw do
     root "articles#index"
     get '/articles/front', to: "articles#index"
     
-    # # resourceful routing
-    # resources :articles do
-    #   resources :comments
-    #   end
+    # resourceful routing
+    resources :articles do
+      resources :comments
+      end
     
     #   # namespace
     # namespace :admin do
@@ -42,23 +42,23 @@ Rails.application.routes.draw do
     # resources :articles, concerns: [:commentable, :image_attachable]
    
     # collection
-    resources :articles do
-      collection do
-        get 'new'
-      end
-    end
-    # member
-    resources :articles do
-      member do
-        get 'edit'
-      end
-    end
+    # resources :articles do
+    #   collection do
+    #     get 'new'
+    #   end
+    # end
+    # # member
+    # resources :articles do
+    #   member do
+    #     get 'edit'
+    #   end
+    # end
 
     
     # Custom routes
     # get '/articles/:id', to: 'articles#show', as: 'article'
     # get '/articles/:id/edit', to:  'articles#edit'
-    get 'articles/:id/profile', to: 'articles#show'
+    # get 'articles/:id/profile', to: 'articles#show'
     # get "/articles", to: "articles#index"
     # get "/articles/:id", to: "articles#show"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
