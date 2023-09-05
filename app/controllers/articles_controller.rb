@@ -18,7 +18,6 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    byebug
     @article = Article.new(article_params)
 
     if @article.save
@@ -50,7 +49,7 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :body, :status)
+    params.require(:article).permit(:title, :body, :status, :email, :email_confirmation)
   end
 
   private
