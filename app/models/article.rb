@@ -9,4 +9,20 @@ class Article < ApplicationRecord
         validates :email_confirmation, presence: true
         validates :body, presence: true, length: { minimum: 10, too_short: "10 characters is the minimum"  }
 
+        # before_create do
+        #         self.name = title.capitalize if title.blank?
+        # end
+        
+        after_find do |article|
+                puts "You have found an object!"
+        end
+        
+        after_initialize do |article|
+                puts "You have initialized an object!"
+        end
+
+        after_touch do |article|
+                puts "You have touched an object"
+        end
+
 end
