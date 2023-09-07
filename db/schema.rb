@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_05_105506) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_07_074843) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -20,6 +20,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_05_105506) do
     t.string "article_type"
     t.string "email"
     t.string "string"
+  end
+
+  create_table "checkups", force: :cascade do |t|
+    t.datetime "app_date"
+    t.integer "patient_id", null: false
+    t.integer "doctor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_checkups_on_doctor_id"
+    t.index ["patient_id"], name: "index_checkups_on_patient_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -32,11 +42,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_05_105506) do
     t.index ["article_id"], name: "index_comments_on_article_id"
   end
 
+  create_table "doctors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "friends", force: :cascade do |t|
     t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "patients", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index :checkups, :patient_id,:doctor_id
+  add_foreign_key "checkups", "doctors"
+  add_foreign_key "checkups", "patients"
   add_foreign_key "comments", "articles"
 end
