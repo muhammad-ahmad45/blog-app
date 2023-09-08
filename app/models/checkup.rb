@@ -1,4 +1,4 @@
 class Checkup < ApplicationRecord
-  belongs_to :patient
-  belongs_to :doctor
+  belongs_to :check    polymorphic: true
+  # belongs_to :doctor
 end
