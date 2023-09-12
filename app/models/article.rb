@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
         include Visible
 
-        has_many :comments, dependent: :destroy, inverse_of: :article, -> { includes :author }
+        has_many :comments, dependent: :destroy, inverse_of: :article
         # has_one :comment, dependent: :destroy
         validates :article_type, acceptance: true
         validates_associated :comments
