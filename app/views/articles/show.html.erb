@@ -9,6 +9,16 @@
                     turbo_confirm: "Are you sure?"
                   } %></li>
 </ul>
+<%= distance_of_time_in_words(Time.now, Time.now + 15.seconds, include_seconds: true) %>
+
+<% my_hash = { 'first' => 1, 'second' => 'two', 'third' => [1,2,3] } %>
+<%= debug(my_hash) %>
+
+<%= link_to @article do %>
+  <strong><%= @article.title %></strong> -- <span>Check it out!</span>
+<% end %>
+
+<%= csrf_meta_tags %>
 
 <h2>Comments</h2>
 <%= render @article.comments %>
