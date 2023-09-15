@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
         include Visible
-        default_scope { where(id: true) }
+        # default_scope { where(id: true) }
         scope :id_more_than, ->(id_no) { where("id > ?", id_no) if id_no.present? }
 
         has_many :comments, dependent: :destroy, inverse_of: :article

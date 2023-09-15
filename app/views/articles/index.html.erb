@@ -47,8 +47,13 @@ Our blog has <%= Article.public_count %> articles and counting!
       </li>
     <% end %>
   </ul>
-<% end %>
 
-<%= check_box_tag "accept" %>
+  <%= link_to 'Sign out', destroy_user_session_path, data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"
+  } %>
+   
+
+<% end %>
 
 <% end %>
